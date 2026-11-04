@@ -1,14 +1,26 @@
-# multiprobe-photometric-sbi
+# euclid-cosmology-multiprobe-photometric-sbi
+Project 448
 
-Robust Cosmology from Multiprobe Simulation-Based Inference with Photometric Catalogs.
 
-This software is presented in an accepted Euclid Consortium paper ([internal project page](https://euclid-projects.org/projects/448/overview/)).
+## Installation
 
-## Maintainers
+1. Select your target platform. Currently we have scripts that work on Clariden and Calculon. Copy `pipeline.py` and `.toml` files to the workspace directory. On Clariden, you may also want to work on an interactive job to set things up; use `interactive.sh`.
+2. Copy `clone.sh`, config `.yaml` files to your workspace.
+3. Clone the member repositories to `repos` directory, run `sh clone.sh`.
+4. Install the `uv` environment with all dependencies of workspace members:
+  
+   ```
+   uv lock
+   uv sync --all-extras --all-groups --all-packages
+   ```
 
-- Tomasz Kacprzak ([@tomaszkacprzak](https://github.com/tomaszkacprzak))
-- Jozef Bucko ([@jbucko](https://github.com/jbucko))
+## Running jobs:
 
-## License
+The main submission script is `pipeline.py`, which is meant to be edited freely by the user. It contains different steps of the analysis. Make sure to submit them one at the time, or explicitly chain them in the `pipeline.py`.
+Then submit jobs like this:
 
-Distributed under the [Euclid Open-Source License](LICENSE) (MIT with a citation request). See the [EC GitHub guidelines](https://github.com/Euclid-Consortium/.github/tree/main/guidelines) for hosting standards.
+```
+uv run pipeline.py
+```
+
+
